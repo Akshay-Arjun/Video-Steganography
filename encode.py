@@ -148,7 +148,7 @@ def clean_tmp(path="./tmp"):
         shutil.rmtree(path)
         print("[INFO] tmp files are cleaned up")
 def main():
-    ENCODE_CHOICE = input("type of encodig : \n 1.TEXT \n 2.IMAGE \n 3.TEXT DOCUMENT \n")
+    ENCODE_CHOICE = input("type of encodig : \n 1.TEXT \n 2.TEXT DOCUMENT \n")
     if ENCODE_CHOICE==1:
         TEXT_TO_ENCODE = input("Enter the text to encrypt and encode : ")
         countFrames()
@@ -184,7 +184,7 @@ def main():
 if __name__ == "__main__":
     os.system('cls' if os.name == 'nt' else 'clear')
     cprint(figlet_format('Team Byte', font='slant'),'yellow', attrs=['bold'])
-    cprint(figlet_format('AES encryted Video Steganography Encoder', font='digital'),'green', attrs=['bold'])
+    cprint(figlet_format('AES & RSA encryted Video Steganography Encoder', font='digital'),'green', attrs=['bold'])
     f_name = sys.argv[1]
     #image_name = sys.argv[2]
     main()
