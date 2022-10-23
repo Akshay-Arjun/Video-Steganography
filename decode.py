@@ -23,7 +23,7 @@ import rsautil1
 
 os.system('cls' if os.name == 'nt' else 'clear')
 cprint(figlet_format('Team Byte', font='slant'),'yellow', attrs=['bold'])
-cprint(figlet_format('AES encrypted Video Steganography Decoder', font='digital'),'green', attrs=['bold'])
+cprint(figlet_format('AES & RSA encrypted Video Steganography Decoder', font='digital'),'green', attrs=['bold'])
 ENCODED_VIDEO = sys.argv[1]
 temp_folder = "tmp2"
 frame_choice = int(input("1) Extract and enter frame numbers from image /n 2) Enter frame numbers manually : "))
