@@ -15,7 +15,7 @@ AES 256 & RSA encrypted video steganography.
 - Save Frame Numbers Inside Another Image.
 
 
-## Craking Keys ?
+## Cracking Keys ?
 
 ### AES-256 Breaking :  
 - Takes 27,337,893 trillion trillion trillion trillion years to bruteforce key using single computer.
