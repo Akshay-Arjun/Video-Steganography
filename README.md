@@ -3,6 +3,12 @@
 
 AES 256 & RSA encrypted video steganography.
 
+# Tested On :
+- Kali Linux
+- WSL
+- Ubuntu 
+- Debian 
+- Termux
 
 
 ## Features
@@ -34,7 +40,9 @@ git clone https://github.com/Akshay-Arjun/Video-Steganography
 ```bash
 pip install -r requirements.txt
 ```
-3 ) Install FFmpeg
+3 ) Install FFmpeg </br>
+   [Changes depending on the operating system you are using.](https://ffmpeg.org/download.html) </br>
+   For Linux & WSL use :
 ```bash
 sudo apt install ffmpeg -y
 ```
