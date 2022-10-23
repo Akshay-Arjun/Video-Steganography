@@ -36,7 +36,7 @@ AES 256 & RSA encrypted video steganography.
 ```bash
 git clone https://github.com/Akshay-Arjun/Video-Steganography
 ```
-2 ) Install requirements 
+2 ) Go to the directory & install requirements 
 ```bash
 pip install -r requirements.txt
 ```
