@@ -21,7 +21,7 @@ AES 256 & RSA encrypted video steganography.
 - Choose AES-256 or RSA Encryption.
 - Apply RSA Encryption For AES key.
 - Choose Any Frame Number.
-- Save Frame Numbers Inside Another Image.
+- Save Frame Numbers Inside Another Image like Image.png <img style="border-width:0" src="https://raw.githubusercontent.com/Akshay-Arjun/Video-Steganography/main/image.png"/>
 
 
 ## Cracking Keys ?
