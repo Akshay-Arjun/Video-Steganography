@@ -148,7 +148,7 @@ def clean_tmp(path="./tmp"):
         shutil.rmtree(path)
         print("[INFO] tmp files are cleaned up")
 def main():
-    ENCODE_CHOICE = input("Choose text or text from text document to hide inside image. \n Enter number either 1 or 2 : \n 1.TEXT \n 2.TEXT DOCUMENT \n")
+    ENCODE_CHOICE = int(input("Choose text or text from text document to hide inside image. \n Enter number either 1 or 2 : \n 1.TEXT \n 2.TEXT DOCUMENT \n"))
     if ENCODE_CHOICE==1:
         TEXT_TO_ENCODE = input("Enter the text to encrypt and encode : ")
         countFrames()
