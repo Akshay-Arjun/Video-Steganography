@@ -21,8 +21,13 @@ AES 256 & RSA encrypted video steganography.
 - Choose AES-256 or RSA Encryption.
 - Apply RSA Encryption For AES key.
 - Choose Any Frame Number.
-- Save Frame Numbers Inside Another Image like Image.png <img style="border-width:0" src="https://raw.githubusercontent.com/Akshay-Arjun/Video-Steganography/main/image.png"/>
-
+- Encrypt Frame Numbers With AES or RSA.
+- Save Encrypted Frame Numbers Inside Another Image like Image.png , The Encryoted Image Will Be Stored As Image-enc.png .
+### Example for Frame Numbers Hidden Inside Image :
+Below encrypted image has ENCRYPTED frame numbers ``` doU2TMGlPJuGcuW5oAIM0LwyWNdaAL8DUJBFmL71LUwXxHvTnP4fS3t72GS0ysDXyPw2TIQnLG7n2ZQ7ePSvBPVuVDkoCBrSR1sriGIXNQg= ``` hidden inside it.
+| Original Image | Encrypted Image With Frame Numbers | 
+| :---:   | :---: |
+| <img style="border-width:0" src="https://raw.githubusercontent.com/Akshay-Arjun/Video-Steganography/main/image.png" width="200"/> | <img style="border-width:0" src="https://raw.githubusercontent.com/Akshay-Arjun/Video-Steganography/main/image-enc.png" width="200"/>   |
 
 ## Cracking Keys ?
 
