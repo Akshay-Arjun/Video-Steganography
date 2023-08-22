@@ -23,7 +23,7 @@ def generate_keys(key_size):
         file_obj = open("./keys/public_key_"+str(key_size)+".pem", "wb")
         file_obj.write(pubkey.exportKey('OpenSSH'))
         file_obj.close()
-        print("Public and Private keys are created and stored inside keys folder.")
+        print("Public and Private keys are \ncreated and stored inside keys folder.")
 if __name__ == '__main__':
     key_size = 5000
     generate_keys(key_size)

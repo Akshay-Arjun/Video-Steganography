@@ -1,33 +1,34 @@
+# Multiple-format-Video-Stegnography Using AES and RSA Algorithm
+This Is a Video Steganography project contains multiple format
 
-# Video-Steganography
+## This project is modified and many upadates has been done in this project
 
-AES 256 & RSA encrypted video steganography.
-
-# License :
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-</br> ``` A creative commons license that bans commercial use.```
 # Tested On :
-- Kali Linux
-- WSL
+ 
 - Ubuntu 
-- Debian 
-- Termux
-
 
 ## Features
  
 - Encrypt and Encode Text In Video.
-- Decode and Decrypt Text From Video.
+- Encrypt and Encode Video In Video.
+- Encrypt and Encode Audio In Video.
+- Encrypt and Encode Images In Video.
+- Encrypt and Encode Text document In Video.
+- Encrypt and Encode all format of data together too In Video.
+- Decode and Decrypt all these format  From Video.
 - Choose AES-256 or RSA Encryption.
 - Apply RSA Encryption For AES key.
 - Choose Any Frame Number.
 - Encrypt Frame Numbers With AES or RSA.
 - Save Encrypted Frame Numbers Inside Another Image like Image.png , The Encryoted Image Will Be Stored As Image-enc.png .
 ### Example for Frame Numbers Hidden Inside Image :
-Below encrypted image has ENCRYPTED frame numbers ``` doU2TMGlPJuGcuW5oAIM0LwyWNdaAL8DUJBFmL71LUwXxHvTnP4fS3t72GS0ysDXyPw2TIQnLG7n2ZQ7ePSvBPVuVDkoCBrSR1sriGIXNQg= ``` hidden inside it.
+
+ hidden inside it.
 | Original Image | Encrypted Image With Frame Numbers | 
 | :---:   | :---: |
-| <img style="border-width:0" src="https://raw.githubusercontent.com/Akshay-Arjun/Video-Steganography/main/image.png" width="200"/> | <img style="border-width:0" src="https://raw.githubusercontent.com/Akshay-Arjun/Video-Steganography/main/image-enc.png" width="200"/>   |
+| <img style="border-width:0" src="https://user-images.githubusercontent.com/114608491/219359802-f3d7ca7a-2d47-44f1-8027-2d332f707cd1.jpg" width="200"/> | <img style="border-width:0" src="https://user-images.githubusercontent.com/114608491/219359802-f3d7ca7a-2d47-44f1-8027-2d332f707cd1.jpg" width="200"/>   |
+ 
+
 
 ## Cracking Keys ?
 
@@ -41,12 +42,21 @@ Below encrypted image has ENCRYPTED frame numbers ``` doU2TMGlPJuGcuW5oAIM0LwyWN
 
 1 ) Clone project with git
 
-```bash
-git clone https://github.com/Akshay-Arjun/Video-Steganography
-```
 2 ) Go to the directory & install requirements 
 ```bash
 pip install -r requirements.txt
+```
+a) Install this for  Audio
+```
+pip install SpeechRecognition
+```
+b) Install Simple Colors Lib for Colors purpose used in the terminal.
+```
+pip install simple-colors
+```
+d) Install  gTTs Lib for Voice .
+```
+pip install gTTs
 ```
 3 ) Install FFmpeg </br>
    [Changes depending on the operating system you are using.](https://ffmpeg.org/download.html) </br>
@@ -79,12 +89,23 @@ python3 decode.py <video-to-decode-with-extension>
   python3 decode.py video.mov
   ```
 
-## Contributing
 
-Contributions are always welcome!
+![Screenshot from 2023-03-24 20-41-45](https://user-images.githubusercontent.com/114608491/227566643-65f36922-38fb-40ea-88a5-035803f8c062.png)
+
+## ScreenShots![Screenshot from 2023-03-24 20-42-46](https://user-images.githubusercontent.com/114608491/227566659-f094a231-7a16-4e09-9b49-adf8e2881f24.png)![Screenshot from 2023-03-24 20-42-52](https://user-images.githubusercontent.com/114608491/227566667-f205b7a3-fc5c-41d5-b089-6650781d6991.png)
 
 
-## Support
+![Screenshot from 2023-03-24 20-42-22](https://user-images.githubusercontent.com/114608491/227566652-f766bcb4-1106-469c-b402-22cb79465005.png)
 
-For support, email 4k5h4y4rjun@duck.com.
+ ![Screenshot from 2023-02-16 17-09-28](https://user-images.githubusercontent.com/114608491/219355294-29da9c4b-1237-42a6-b262-b5b1168d4da9.png)
 
+
+## Important Note
+
+1. Make sure that if you want to run the project in GUI mode then you have to place the files in encode and decode folder files in the root directories
+
+<pre>
+This project we have developed in the Parkalp 2023 hackathon.
+
+
+</pre>

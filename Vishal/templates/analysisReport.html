@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row w-100 "> 
+    <div class="col-md-8 offset-md-2 mb-5">
+        <div class="px-3 text-center">
+            <h1>Suggesting Best Courses</h1>
+            <h4> Using Sentimental Analysis</h4>
+        </div>  
+        <br>
+    <div class="card mb-5 text-white shadow p-3" style="background-color:#1b27b1">
+        <div class="row g-0 h-100">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ CourseInfo.courses[0].title }}</h3>
+                    <h6 class="card-text">by {{ CourseInfo.courses[0].instructor }} ({{CourseInfo.courses[0].platform}})</h6>
+                    <hr>
+                    <p class="card-text">{{ CourseInfo.courses[0].description[:100] }}...</p>
+                    <div class="row mt-5">
+                        <div class="col">
+                            <p>&#128337; {{CourseInfo.courses[0].duration}}</p>
+                        </div>
+                        <div class="col">
+                            <p>📖 {{CourseInfo.courses[0].learner_count}}</p>
+                        </div>
+                    </div>
+                    <form action="{{CourseInfo.courses[0].link}}" target="_blank">
+                        <input type="text" name="v" id="" value="{{CourseInfo.courses[0].v}}" hidden>
+                        <div class="row">
+                            <div class="col-4 offset-4">
+                                <button class="btn btn-success">Join Course</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 my-auto bg-white p-2 rounded d-flex justify-content-center h-100">
+                <div class="gauge">
+                    <div class="gauge__body">
+                      <div class="gauge__fill"></div>
+                      <div class="gauge__cover"></div>
+                    </div>
+                  </div>
+            </div>
+        </div>  
+    </div>
+    <form action="/multipleAnalysis" method="post">
+        <div class="row">
+            <div class="col-4 offset-4">
+                <button class="btn btn-primary" >Compare with Other Courses</button>
+            </div>
+        </div>
+    </form>
+<!-- <h1>{{ CourseInfo.courses[0].title }}</h1>
+<h4>by {{ CourseInfo.courses[0].instructor }}</h4>
+<p>Duration : {{ CourseInfo.courses[0].duration }}</p>
+<p>Rating : {{ CourseInfo.courses[0].rating }}</p>
+
+<form action="/multipleAnalysis" method="post">
+    <input type="text" name="firstTime" value="true" hidden>
+    <button>Compare with Other Courses</button>
+</form> -->
+
+</div>
+</div>
+
+<script>
+const gaugeElement = document.querySelector(".gauge");
+
+function setGaugeValue(gauge, value) {
+  if (value < 0 || value > 5) {
+    return;
+  }
+
+  if(value<=1) color='#EE341B'
+  else if (value<=2) color='#FFC001'
+  else if (value<=3) color='#8AD824'
+  else if (value<=4) color='#02A0E9'
+  else color='#7030A0'
+
+  gauge.querySelector(".gauge__fill").style.transform = `rotate(${
+    value / 10
+  }turn)`;
+  gauge.querySelector(".gauge__fill").style.background = color;
+  gauge.querySelector(".gauge__cover").style.color = color;
+  gauge.querySelector(".gauge__cover").textContent = `${
+    value
+  }`;
+}
+setGaugeValue(gaugeElement, {{CourseInfo.courses[0].rating}});
+
+</script>
+{% endblock %}

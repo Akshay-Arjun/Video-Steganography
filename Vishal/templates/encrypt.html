@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row w-100 "> 
+    <div class="col-md-6 offset-md-3 text-center">
+        <div class="px-3 text-center">
+            <!-- <h1>Suggesting Best Courses</h1> -->
+            <!-- <h4> Using Sentimental Analysis</h4>/ -->
+
+            <h1 id="clicke">Video Stegnography </h1>
+            <h4> Using AES and RSA</h4>
+        </div>  
+    <!-- <form action="/analysis" method="post" class="mt-5"> -->
+        <!-- <input type="url" placeholder="Paste the URL link of course here" name="link" id="link" class="form-control form-rounded rounded shadow text-center" required>
+        <div class="row">
+            <div class="col-4 offset-4">
+                <select name="platform" id="platform" class="form-select rounded shadow mt-3  text-center text-muted" required>
+                    <option selected><p class="lead">Select Platform</p></option>
+                    <option value="Udemy">Udemy</option>
+                    <option value="Youtube">YouTube</option>
+                    <option value="Coursera">Coursera</option>
+                </select><br>
+            </div>
+        </div>
+        <button class="mt-3 btn btn-success">Analyse</button> -->
+    <!-- </form> -->
+
+    
+
+    <div class="fileV">
+        
+        
+    </div>
+    
+    
+    <!-- <label for="cars">Choose :</label> -->
+    <div class="tri2">
+<form method="POST" action="/encode">
+
+
+
+        <!-- <input type="file" style="  padding: 10px; margin: 10px;"   accept="image/png, image/jpeg,Video/mov,Video/mp4,*.txt,Audio/wav"> -->
+        <input type="file" style="  padding: 10px; margin: 10px;"  name="cover"  accept="*.*" >
+        <input type="file" name="to_hide" style="padding: 10px; margin: 10px;">
+
+        
+        
+        <select name="file_type" id="typeFile" class="vishal" required  >
+            
+            <option selected><p class="lead"><pre>     Select Type<sup id="imp" class="v">*</sup></pre></p></option>
+            <option value="3">Image</option>
+           
+            <option value="6">Video</option>
+            <option value="2">TextFile</option>
+            <option value="4">Audio</option>
+            
+            </select>
+
+        <select name="encode_method" id="">
+
+
+            <option value="1" selected>AES</option>
+            <option value="2">RSA</option>
+        </select>
+
+            <input type="submit" value="Encrypt-Data" class="btn btn-success" >
+    
+            
+</form>
+
+   
+    
+</div>
+
+{% endblock %}

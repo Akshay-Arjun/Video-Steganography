@@ -1,0 +1,94 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row w-100 "> 
+    <div class="col-md-8 offset-md-2 mb-5">
+        <div class="px-3 text-center">
+            <h1>Suggesting Best Courses</h1>
+            <h4> Using Sentimental Analysis</h4>
+        </div>
+        
+        <div class="row d-flex flex-nowrap justify-content-center text-center mt-5">
+            <div class="col" style="width: 18rem;"><h3 class="text-secondary">Properties</h3> </div>
+            {% for course in CourseInfo.courses  %}
+                <div class="col" style="width: 18rem;"><h3 style="color: #1b27b1;">{{course.title[:30]}} </h3></div>
+            {% endfor %}
+            {% if CourseInfo.totalCourses<2 %}
+            <div class="col"  style="width: 18rem;"><h3 class="text-secondary">Add More</h3></div>
+            {% endif %}
+
+        </div>
+
+        <div class="row d-flex flex-nowrap justify-content-center text-center" >
+            <div class="col"> 
+                <div class="card shadow" style="width: 18rem;">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">Rating</li>
+                      <li class="list-group-item">Platform</li>
+                      <li class="list-group-item">Instructor</li>
+                      <li class="list-group-item">Duration</li>
+                      <li class="list-group-item">Learner Count</li>
+                    </ul>
+                </div>
+            </div>
+            {% for course in CourseInfo.courses  %}
+            <div class="col">
+                <div class="card shadow text-white" style="width: 18rem; background-color: #1b27b1;">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item text-white" style="background-color: #1b27b1;">{{course.rating}}</li>
+                      <li class="list-group-item text-white" style="background-color: #1b27b1;">{{course.platform}}</li>
+                      <li class="list-group-item text-white" style="background-color: #1b27b1;">{{course.instructor[:23]}}{% if course.instructor[23] %}...{% endif %}</li>
+                      <li class="list-group-item text-white" style="background-color: #1b27b1;">{{course.duration}}</li>
+                      <li class="list-group-item text-white" style="background-color: #1b27b1;">{{course.learner_count}}</li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+            {% if CourseInfo.totalCourses<2 %}
+            <div class="col"> 
+                <div class="card shadow h-100" style="width: 18rem;">
+                    <form action="/multipleAnalysis" method="post" class="p-2 mt-3">
+                        <input type="url" placeholder="Paste the URL link of course here" name="link" id="link" class="form-control form-rounded rounded text-center" required>
+                        <div class="row">
+                            <div class="col-8 offset-2">
+                                <select name="platform" id="platform" class="form-select rounded  mt-3  text-center text-muted" required>
+                                    <option selected><p class="lead">Select Platform</p></option>
+                                    <option value="Udemy">Udemy</option>
+                                    <option value="Youtube">YouTube</option>
+                                    <option value="Coursera">Coursera</option>
+                                </select><br>
+                            </div>
+                        </div>
+                        <button class="mt-1 btn btn-success">Add</button>
+                    </form>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- {% for course in CourseInfo.courses %}
+    <h1>{{ course.title }}</h1>
+    <h4>by {{ course.instructor }}</h4>
+    <p>Duration : {{ course.duration }}</p>
+    <p>Rating : {{ course.rating }}</p>
+    <br>
+{% endfor %}
+
+{% if CourseInfo.totalCourses<5 %}
+    <form action="/multipleAnalysis" method="post">
+        <label for="link">Enter Course URL link:</label>
+        <input type="text" placeholder="url link" name="link" id="link">
+        <label for="platform">Platform</label>
+        <select name="platform" id="platform">
+            <option value="Udemy">Udemy</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Coursera">Coursera</option>
+        </select>
+        <button>Add</button>
+    </form>
+{% endif %} -->
+
+{% endblock %}

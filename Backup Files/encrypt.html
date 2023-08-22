@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row w-100 "> 
+    <div class="col-md-6 offset-md-3 text-center">
+        <div class="px-3 text-center">
+            <!-- <h1>Suggesting Best Courses</h1> -->
+            <!-- <h4> Using Sentimental Analysis</h4>/ -->
+
+            <h1 id="clicke">Video Stegnography </h1>
+            <h4> Using AES and RSA</h4>
+        </div>  
+    
+
+    
+
+    <div class="fileV">
+        
+        
+    </div>
+    
+    
+    
+    <div class="tri2">
+<form method="POST" action="/encode">
+
+
+
+        
+        <div style="display: block;">
+        <label for="cover">Select Video : </label>
+        <input type="file" style="  padding: 10px; margin: 10px;"  name="cover" id="cover" accept="*.*" >
+    </div>
+
+    <div style="display: block;">
+        <label for="to_hide">Select Data:</label>
+        <input type="file" name="to_hide1"  id="to_hide" style="padding: 10px; margin: 10px;">
+
+    </div>
+    <div style="display: block;">
+
+        <label   for="cov">Select Audio : </label>
+
+        <input type="file" name="to_hide2" id="to_hide11" style="padding: 10px; margin: 10px;">
+
+    </div>
+    <div style="display: block;">
+
+        <label   for="cov">Select Image : </label>
+
+        <input type="file" name="to_hide3" id="to_hide22"  style="padding: 10px; margin: 10px;">
+
+    </div>
+    <div style="display: block;">
+
+        <label   for="cov">Select Video : </label>
+
+        <input type="file" name="to_hide4" id="to_hide33" style="padding: 10px; margin: 10px;">
+
+    </div>
+      
+      
+        
+        <select name="file_type" id="typeFile" class="vishal" required  >
+            
+            <option selected><p class="lead"><pre>     Select Type<sup id="imp" class="v">*</sup></pre></p></option>
+            <option value="3">Image</option>
+           
+            <option value="6">Video</option>
+            <option value="2">TextFile</option>
+            <option value="4">Audio</option>
+            <option value="5" id="hide">Multiple Formats</option>
+            </select>
+
+        <select name="encode_method" id="">
+
+
+            <option value="1" selected>AES</option>
+            <option value="2">RSA</option>
+        </select>
+        <br>
+        <br>
+        <div style="display:block ;">
+            <input type="submit" value="Encrypt-Data" class="btn btn-success" >
+        </div>
+    
+</form>
+
+   
+    
+</div>
+<script>
+    
+    $(document).ready(function() {
+    // Hide the second file input element on page load
+    $('input[name="to_hide2"]').hide();
+    $('input[name="to_hide3"]').hide();
+    $('input[name="to_hide4"]').hide();
+    $('label[for="cov"]').hide();
+    
+    // Show or hide the second file input element based on the selected option
+    $('#typeFile').change(function() {
+        if ($('#typeFile option:selected').attr('id') == 'hide') {
+            $('input[name="to_hide2"]').show();
+            $('input[name="to_hide3"]').show();
+            $('input[name="to_hide4"]').show();
+            $('label[for="cov"]').show();
+        } else {
+            $('input[name="to_hide2"]').hide();
+            $('input[name="to_hide3"]').hide();
+            $('input[name="to_hide4"]').hide();
+            
+            $('label[for="cov"]').hide();
+           
+        }
+    });
+});
+</script>
+
+{% endblock %}

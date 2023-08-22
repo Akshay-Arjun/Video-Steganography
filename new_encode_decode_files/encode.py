@@ -1,6 +1,6 @@
-# 1 89 32 2 5 6 7 8 9 10 11 12 13 14 18
-# 89 32 2 5 6 7 8 9 10 11 12 13 14 18 1
-#./keys/public_key_5000.pem
+
+
+
 from tkinter import filedialog
 from tkinter import *
 from stegano import lsb
@@ -22,6 +22,8 @@ from simple_colors import *
 import time
 from tkinter.filedialog import askopenfile
 from gtts import gTTS
+import random
+
 
 # Used to split string into parts.
 def split_string(s_str,count=15):
@@ -47,7 +49,7 @@ def countFrames():
     cprint(f"Total frame in video are : {length-1}",'blue')
     return length
 
-# Extract the frames from the video
+# Extract the frames
 def frame_extraction(video):
     if not os.path.exists("./tmp"):
         os.makedirs("tmp")
@@ -67,16 +69,16 @@ def frame_extraction(video):
 #Encrypt and encode text into frames
 def encode_string(input_string,root="./tmp/"):
     cprint("Select your encryption type \n 1) AES Encrypted {Symetric Encryption} \n 2) RSA Encrypted {Assysmetric Encryption}\n",'blue')
-    Encryption_Style=int(input(""))
+    Encryption_Style=int(encode_method)
     if Encryption_Style == 1:
         res=input_string
-        key123=int(input("Choose key type \n   \n 2.ASCII : "))
-        key = input("Enter the key : ")
+        key123=int(2)
+        key = "1"
         if key123==1:
            input_string = aesutil.encrypt(key=key,source=res) 
         else:
             input_string = aesutil.encrypt(key=key,source=res,keyType='ascii')
-        key_path = input("Enter the receiver publickey filename with path to encrypt key : ")
+        key_path = "./keys/public_key_5000.pem"
         key_rsa = rsautil1.encrypt(message=key,key_path=key_path)
         key_rsa = key_rsa.decode('utf-8')
         print(f"Asymetric encrypted key to be shared with receiver \n {key_rsa}")
@@ -89,11 +91,12 @@ def encode_string(input_string,root="./tmp/"):
         #print(split_string_list)
         split_string_length = len(split_string_list)
     
-        FRAMES = list(map(int, input(f"Enter {split_string_length} FRAME NUMBERS seperated by space : ").split()))
+        FRAMES = [random.randint(10,100) for i in range (1,split_string_length+1)]
     
-        frame_choice = int(input("1) Do you want to store frame numbers in an image \n 2) No! Don't store : "))
+        # frame_choice = int(input("1) Do you want to store frame numbers in an image \n 2) No! Don't store : "))
+        frame_choice = 1
         if frame_choice == 1:
-            ENCODE_IMAGE = input("Enter image name with extension : ")
+            ENCODE_IMAGE = "test.jpg"
             res = str(FRAMES)
             if key123==1:
                 FRAMES_ENCODED = aesutil.encrypt(key=key,source=res)
@@ -109,7 +112,7 @@ def encode_string(input_string,root="./tmp/"):
             cprint("[Info] Frame numbers are not stored anywhere. Please remember them.",'red')
     else :
         res=input_string
-        key_path = input("Enter the publickey filename with path : ")
+        key_path = "./keys/public_key_5000.pem"
         input_string = rsautil1.encrypt(message=res,key_path=key_path)
         input_string = input_string.decode('utf-8')
         input_string = str(input_string)
@@ -117,8 +120,9 @@ def encode_string(input_string,root="./tmp/"):
         split_string_list=split_string(input_string)
         #print(split_string_list)
         split_string_length = len(split_string_list)
-        FRAMES = list(map(int, input(f"Enter {split_string_length} FRAME NUMBERS seperated by space : ").split()))
-        frame_choice = int(input("1) Do you want to store frame numbers in an image \n2) No! Don't store : "))
+        FRAMES = [i for i in range(1,16)]
+        # frame_choice = int(input("1) Do you want to store frame numbers in an image \n2) No! Don't store : "))
+        frame_choice = 2
         if frame_choice == 1:
             ENCODE_IMAGE = input("Enter image name with extension : ")
             res = str(FRAMES)
@@ -133,6 +137,7 @@ def encode_string(input_string,root="./tmp/"):
             #print(f"Encrypted frame numbers : {res}") 
         else :
             cprint("[Info] Frame numbers are not stored anywhere. Please remember them.",'red')
+   
     for i in range(0,len(FRAMES)):
         f_name="{}{}.png".format(root,FRAMES[i])
        #print(f_name)
@@ -146,7 +151,10 @@ def clean_tmp(path="./tmp"):
         shutil.rmtree(path)
         print("[INFO] tmp files are cleaned up")
 def main():
-    ENCODE_CHOICE = int(input("Choose text or text from text document to hide inside image. \n Enter number either 1|2|3|4|5 : \n1.TEXT \n2.TEXT DOCUMENT \n3.Image Hide \n4.Audio Hide \n5. Multiple format Video Hide  \n6.Video Hide \nEnter Your Choice : "))
+    ENCODE_CHOICE = int(file_type1)
+    print("inside main")
+
+    # ENCODE_CHOICE = int(input("Choose text or text from text document to hide inside image. \n Enter number either 1|2|3|4|5 : \n1.TEXT \n2.TEXT DOCUMENT  \nEnter Your Choice : "))
     # print("Enter Your Choice : ")
 
     if ENCODE_CHOICE==1:
@@ -163,7 +171,8 @@ def main():
         clean_tmp()
     if ENCODE_CHOICE==2:
         print("Please Select a Txt file as an Input")
-        FILE_TO_ENCODE  =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("Text files","*.txt"),("all files","*.*")))
+        # FILE_TO_ENCODE  =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("Text files","*.txt"),("all files","*.*")))
+        FILE_TO_ENCODE= to_hide1
 
         # FILE_TO_ENCODE = input("Select text from file:")
         TEXT_TO_ENCODE = []
@@ -172,6 +181,7 @@ def main():
                 TEXT_TO_ENCODE.append(lines)
         TEXT_TO_ENCODE = str(TEXT_TO_ENCODE)
         print(TEXT_TO_ENCODE)
+        TEXT_TO_ENCODE+="2"
         countFrames()
         frame_extraction(f_name)
         encode_string(TEXT_TO_ENCODE)
@@ -185,7 +195,7 @@ def main():
 
     if ENCODE_CHOICE==3:
         # root=Tk()
-        FILE_TO_ENCODE= input("\n Enter image name with extension : ")
+        FILE_TO_ENCODE= to_hide1
         # FILE_TO_ENCODE  =  filedialog.askopenfilename(initialdir = "/",title = "Select file",filetypes = (("Image files","*.*"),("all files","*.*")))
 
 
@@ -208,7 +218,9 @@ def main():
 
       
         s=" ".join(str(x) for x in li)
-        print(s)
+        a,b,c=img.shape
+        s+=str(a)+str(b)+"3"
+        # print(s)
         countFrames()
         frame_extraction(f_name)
         encode_string(s)
@@ -224,9 +236,10 @@ def main():
         r=sr.Recognizer()
         # print("1")
         print(yellow('Audio Name Speech.wav is reading...', ['bold']))
-        with sr.AudioFile('speech.wav') as source:
+        with sr.AudioFile(to_hide1) as source:
 
             audio_text = r.listen(source)
+            print(audio_text)
             # print("1")
             try:
                 text = r.recognize_google(audio_text)
@@ -235,7 +248,7 @@ def main():
             except:
                 print('Sorry.. run again...')
 
-
+        text+="4"
         countFrames()
         frame_extraction(f_name)
         encode_string(text)
@@ -436,74 +449,76 @@ def main():
         # frame_extraction(f_name)
         # encode_string(s)
         # print("Hurreg")
-        if ENCODE_CHOICE==6:
-            print("Be Patient for processing")
+    if ENCODE_CHOICE==6:
+        print("Be Patient for processing")
 
-            cap = cv2.VideoCapture("hid.mp4")
-            length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-            li=[]
-            count=0
+        cap = cv2.VideoCapture(to_hide1)
+        length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        li=[]
+        count=0
 
-            while(cap.isOpened()):
+        while(cap.isOpened()):
 
-                ret, frame = cap.read()
-                if ret == True:
-                    frame = cv2.resize(frame, (300, 300))
-                    # cv2.imshow('frame',frame)
-                    # count+=1
-                    # if(count%2==0):
+            ret, frame = cap.read()
+            if ret == True:
+                frame = cv2.resize(frame, (150, 150))
+                # cv2.imshow('frame',frame)
+                # count+=1
+                # if(count%2==0):
 
-                        # fp+=1
-                    # for i in frame:
+                    # fp+=1
+                # for i in frame:
 
-                        # for j in i:
-                            # for k in j:
-                                # li.append(k)
+                    # for j in i:
+                        # for k in j:
+                            # li.append(k)
 
-                    count+=1
-                    if(count%48==0):
-                        # 4 lakh
+                count+=1
+                if(count%48==0):
+                    # 4 lakh
 
 
-                        # fp+=1
-                        for i in frame:
+                    # fp+=1
+                    for i in frame:
 
-                            for j in i:
-                                for k in j:
-                                    li.append(k)
-                                
-                    if cv2.waitKey(10) & 0xFF == ord('q'):
-                        break
-                else:
+                        for j in i:
+                            for k in j:
+                                li.append(k)
+                    a,b,c=frame.shape
+                            
+                if cv2.waitKey(10) & 0xFF == ord('q'):
                     break
-            s=" ".join(str(x) for x in li)
+            else:
+                break
+        s=" ".join(str(x) for x in li)
+        s+=str(a)+str(b)+"6"
 
-            # r=sr.Recognizer()
-            # # print("1")
-            # print(yellow('Audio Name Speech.wav is reading...', ['bold']))
-            # with sr.AudioFile('speech.wav') as source:
+        # r=sr.Recognizer()
+        # # print("1")
+        # print(yellow('Audio Name Speech.wav is reading...', ['bold']))
+        # with sr.AudioFile('speech.wav') as source:
 
-            #     audio_text = r.listen(source)
-            #     # print("1")
-            #     try:
-            #         text = r.recognize_google(audio_text)
-            #         # print('Converting audio transcripts into text ...')
-            #         print(text)
-            #     except:
-            #         print('Sorry.. run again...')
+        #     audio_text = r.listen(source)
+        #     # print("1")
+        #     try:
+        #         text = r.recognize_google(audio_text)
+        #         # print('Converting audio transcripts into text ...')
+        #         print(text)
+        #     except:
+        #         print('Sorry.. run again...')
 
 
-            countFrames()
-            frame_extraction(f_name)
-            encode_string(s)
-            # print("Hurreg")
-        # Mix images into video and add audio.
-            call(["ffmpeg", "-i",f_name, "-q:a", "0", "-map", "a", "tmp/audio.mp3", "-y"],stdout=open(os.devnull, "w"), stderr=STDOUT)  
-            call(["ffmpeg", "-i", "tmp/%d.png" , "-vcodec", "png", "tmp/video.mov", "-y"],stdout=open(os.devnull, "w"), stderr=STDOUT)  
-            call(["ffmpeg", "-i", "tmp/video.mov", "-i", "tmp/audio.mp3", "-codec", "copy", "video.mov", "-y"],stdout=open(os.devnull, "w"), stderr=STDOUT)
+        countFrames()
+        frame_extraction(f_name)
+        encode_string(s)
+        # print("Hurreg")
+    # Mix images into video and add audio.
+        call(["ffmpeg", "-i",f_name, "-q:a", "0", "-map", "a", "tmp/audio.mp3", "-y"],stdout=open(os.devnull, "w"), stderr=STDOUT)  
+        call(["ffmpeg", "-i", "tmp/%d.png" , "-vcodec", "png", "tmp/video.mov", "-y"],stdout=open(os.devnull, "w"), stderr=STDOUT)  
+        call(["ffmpeg", "-i", "tmp/video.mov", "-i", "tmp/audio.mp3", "-codec", "copy", "video.mov", "-y"],stdout=open(os.devnull, "w"), stderr=STDOUT)
 
-            cprint("Video is succesfully encoded with encrypted Video.",'green')
-            clean_tmp()
+        cprint("Video is succesfully encoded with encrypted Video.",'green')
+        clean_tmp()
 
 
 
@@ -512,32 +527,55 @@ def main():
 
         
     
-if __name__ == "__main__":
-    os.system('cls' if os.name == 'nt' else 'clear')
-    cprint(figlet_format('Group9', font='slant'),'yellow', attrs=['bold'])
+def final(name,to_hide,file_type,encode_method1):
+    # os.system('cls' if os.name == 'nt' else 'clea/r')
+    print("name is ",name)
+    print("to_hide is ",to_hide)
+    print("file_type is ",file_type)
+
+    global name1
+    name1 = name
+    global to_hide1
+    to_hide1 = to_hide
+    global file_type1
+    file_type1 = file_type
+    global encode_method
+    encode_method = encode_method1
+    print("name is ",name1)
+    print("to_hide is ",to_hide1)
+    print("file_type is ",file_type1)
+    print("encode_method is ",end="")
+    if(encode_method=='1'):
+        print("AES")
+    else:
+        print("RSA")
+    print(type(file_type1))
+
+    cprint(figlet_format('Group6', font='slant'),'yellow', attrs=['bold'])
     # time.sleep(3)
-    print("\n")
+    # print("\n")
 
     
-    print(green('Guide: Prof. (Dr.) Premanand P. Ghadekar', ['bold']))
+    # print(green('Guide: Prof. (Dr.) Premanand P. Ghadekar', ['bold']))
     # print("Guide: Prof. (Dr.) Premanand P. Ghadekar")
     # time.sleep(2)
 
     print("\n")
-    print(blue('Group Members', ['bold']))
+    # print(blue('Group Members', ['bold']))
     # Prajwal Atram, Hitashri Patil, Nupur Shinde, Vishal Singh, Sameer Meshram
-    print("\n")
-    print("06 - Prajwal Atram")
-    print("40 - Hitashri Patil")
-    print("54 - Nupur Shinde")
-    print("63 - Vishal Singh")
-    print("76 - Sameer Meshram")
+    # print("\n")
+    # print("06 - Prajwal Atram")
+    # print("40 - Hitashri Patil")
+    # print("54 - Nupur Shinde")
+    # print("63 - Vishal Singh")
+    # print("76 - Sameer Meshram")
     
-    print("\n\n")
+    # print("\n\n")
     time.sleep(2)
     print(yellow('Video Steganography', ['bold']))
     print("\n\n")
     cprint(figlet_format('AES & RSA encrytion', font='digital'),'green', attrs=['bold'])
-    f_name = sys.argv[1]
+    global f_name
+    f_name = name
     #image_name = sys.argv[2]
     main()
